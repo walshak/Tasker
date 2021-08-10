@@ -26,7 +26,8 @@ class TaskController extends Controller
     public function index()
     {
 
-        $tasks = Task::paginate(5);
+        $user = Auth::id();
+        $tasks = Task::where('user_id',$user)->paginate(5);
         //dd($tasks);
         return view('home')->with(['tasks' => $tasks]);
     }
